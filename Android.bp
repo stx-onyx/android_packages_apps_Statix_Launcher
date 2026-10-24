@@ -32,6 +32,9 @@ android_app {
         "res",
     ],
 
+    libs: [
+        "framework-statsd.stubs.module_lib",
+    ],
     static_libs: [
         "com_android_launcher3_flags_lib",
         "com_android_wm_shell_flags_lib",
@@ -40,6 +43,10 @@ android_app {
         "QuickstepResLib",
         "libGoogleFeed",
         "monet",
+        "SystemUI-statsd",
+        // Soong only applies the Compose compiler plugin to modules that
+        // list the Compose runtime in their own static_libs.
+        "androidx.compose.runtime_runtime",
     ],
     srcs: [
         ":launcher-src",
@@ -64,6 +71,9 @@ android_app {
         "Launcher3QuickStep",
     ],
     plugins: ["dagger2-compiler"],
+    kotlincflags: [
+        "-Xjvm-default=all",
+    ],
 
     jacoco: {
         include_filter: ["com.android.launcher3.**", "com.statix.launcher.**"],
