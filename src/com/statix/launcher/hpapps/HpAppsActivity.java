@@ -121,9 +121,7 @@ public class HpAppsActivity extends Activity
 
     @Override
     public void onUpdated(boolean result) {
-        LauncherAppState.INSTANCE.executeIfCreated(state -> {
-            state.getModel().forceReload();
-        });
+        LauncherAppState.getInstance(this).getModel().reloadIfActive("HpAppsActivity");
     }
 
     @Override
